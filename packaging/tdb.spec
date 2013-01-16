@@ -2,7 +2,7 @@ Name:           tdb
 Version:        1.2.10
 Release:        0
 Summary:        Samba Trivial Database
-License:        GPL-3.0+
+License:        GPLv3.0+
 Group:          System/Libraries
 Url:            http://tdb.samba.org/
 
@@ -11,7 +11,7 @@ Source:         http://www.samba.org/ftp/tdb/tdb-%{version}.tar.gz
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 BuildRequires:  autoconf
 BuildRequires:  pkg-config
-BuildRequires:  python-devel
+BuildRequires:  pkgconfig(python)
 
 %define libtdb_name libtdb1
 
