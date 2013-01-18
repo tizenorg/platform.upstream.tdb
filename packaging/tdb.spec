@@ -13,8 +13,6 @@ BuildRequires:  autoconf
 BuildRequires:  pkg-config
 BuildRequires:  python-devel
 
-%define libtdb_name libtdb1
-
 %description
 TDB is a Trivial Database. In concept, it is very much like GDBM, and BSD's DB
 except that it allows multiple simultaneous writers and uses locking
@@ -31,34 +29,34 @@ small.
 %install
 %make_install
 
-%package -n %{libtdb_name}
-Summary:        Libraries and Header Files to Develop Programs with tdb1 Support
+%package -n libtdb
+Summary:        Libraries and Header Files to Develop Programs with tdb Support
 Group:          System/Libraries
 Requires:       pkg-config
 Requires(post):  /sbin/ldconfig
 Requires(postun):  /sbin/ldconfig
 
-%description -n %{libtdb_name}
+%description -n libtdb
 TDB is a Trivial Database. In concept, it is very much like GDBM, and BSD's DB
 except that it allows multiple simultaneous writers and uses locking
 internally to keep writers from trampling on each other. TDB is also extremely
 small.
 
-This package contains the tdb1 library.
+This package contains the tdb library.
 
-%post -n %{libtdb_name} -p /sbin/ldconfig
+%post -n libtdb -p /sbin/ldconfig
 
-%postun -n %{libtdb_name} -p /sbin/ldconfig
+%postun -n libtdb -p /sbin/ldconfig
 
-%files -n %{libtdb_name}
+%files -n libtdb
 %defattr(-,root,root)
 %{_libdir}/libtdb.so.*
 
 
 %package -n libtdb-devel
-Summary:        Libraries and Header Files to Develop Programs with tdb1 Support
+Summary:        Libraries and Header Files to Develop Programs with tdb Support
 Group:          Development/Libraries/C and C++
-Requires:       %{libtdb_name} = %{version}
+Requires:       libtdb = %{version}
 Requires:       pkg-config
 
 %description -n libtdb-devel
