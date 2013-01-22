@@ -18,16 +18,6 @@ except that it allows multiple simultaneous writers and uses locking
 internally to keep writers from trampling on each other. TDB is also extremely
 small.
 
-%prep
-%setup -n tdb-%{version} -q
-
-%build
-%configure --disable-python
-%{__make} %{?jobs:-j%jobs}
-
-%install
-%make_install
-
 %package -n libtdb
 Summary:        Libraries and Header Files to Develop Programs with tdb Support
 Group:          System/Libraries
@@ -42,8 +32,6 @@ internally to keep writers from trampling on each other. TDB is also extremely
 small.
 
 This package contains the tdb library.
-
-
 %package -n libtdb-devel
 Summary:        Libraries and Header Files to Develop Programs with tdb Support
 Group:          Development/Libraries/C and C++
@@ -70,6 +58,32 @@ small.
 
 This package contains tools to manage Tdb files.
 
+%package -n python-tdb
+Summary:        Python bindings to Develop Programs with tdb Support
+
+%description -n python-tdb
+TDB is a Trivial Database. In concept, it is very much like GDBM, and BSD's DB
+except that it allows multiple simultaneous writers and uses locking
+internally to keep writers from trampling on each other. TDB is also extremely
+small.
+
+This package contains python language support.
+
+
+
+%prep
+%setup -n tdb-%{version} -q
+
+%build
+%configure 
+#--disable-python
+
+%{__make} %{?jobs:-j%jobs}
+
+%install
+%make_install
+
+
 %post -n libtdb -p /sbin/ldconfig
 
 %postun -n libtdb -p /sbin/ldconfig
@@ -91,5 +105,6 @@ This package contains tools to manage Tdb files.
 %{_bindir}/tdbrestore
 %{_bindir}/tdbtool
 
-
-
+%files -n python-tdb
+%defattr(-,root,root)
+%{python_sitearch}/tdb.so
