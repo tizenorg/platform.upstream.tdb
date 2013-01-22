@@ -1,3 +1,6 @@
+* Tue Jan 22 2013 Corentin Lecouvey <corentin.lecouvey@eurogiciel.fr> submit/devel/20130118.145637@20ac997
+- reorder %package and %files sections in spec file
+
 * Fri Jan 18 2013 jbollo <jose.bollo@eurogiciel.fr> submit/devel/20130110.082050@4548b07
 - Renaming of package.
 
