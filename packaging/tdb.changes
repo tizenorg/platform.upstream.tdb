@@ -1,3 +1,7 @@
+* Tue Jan 22 2013 Philippe Coval <philippe.coval@eurogiciel.fr> submit/trunk/20130122.161055@13eec32
+- #TZPC-515
+- Add: python-tdb package since python is requiered to build it
+
 * Tue Jan 22 2013 Corentin Lecouvey <corentin.lecouvey@eurogiciel.fr> submit/devel/20130118.145637@20ac997
 - reorder %package and %files sections in spec file
 
