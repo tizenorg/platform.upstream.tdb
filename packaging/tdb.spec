@@ -6,6 +6,7 @@ License:        GPLv3.0+
 Group:          System/Libraries
 Url:            http://tdb.samba.org/
 Source:         http://www.samba.org/ftp/tdb/tdb-%{version}.tar.gz
+Source1001: 	tdb.manifest
 
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 BuildRequires:  autoconf
@@ -73,6 +74,7 @@ This package contains python language support.
 
 %prep
 %setup -n tdb-%{version} -q
+cp %{SOURCE1001} .
 
 %build
 %configure 
@@ -89,16 +91,19 @@ This package contains python language support.
 %postun -n libtdb -p /sbin/ldconfig
 
 %files -n libtdb
+%manifest %{name}.manifest
 %defattr(-,root,root)
 %{_libdir}/libtdb.so.*
 
 %files -n libtdb-devel
+%manifest %{name}.manifest
 %defattr(-,root,root)
 %{_includedir}/tdb.h
 %{_libdir}/libtdb.so
 %{_libdir}/pkgconfig/tdb.pc
 
 %files tools
+%manifest %{name}.manifest
 %defattr(-,root,root)
 %{_bindir}/tdbbackup
 %{_bindir}/tdbdump
@@ -106,5 +111,6 @@ This package contains python language support.
 %{_bindir}/tdbtool
 
 %files -n python-tdb
+%manifest %{name}.manifest
 %defattr(-,root,root)
 %{python_sitearch}/tdb.so
