@@ -1,16 +1,17 @@
-#ifndef _system_wait_h
-#define _system_wait_h
-/* 
+#ifndef _system_gssapi_h
+#define _system_gssapi_h
+
+/*
    Unix SMB/CIFS implementation.
 
-   waitpid system include wrappers
+   GSSAPI system include wrappers
 
    Copyright (C) Andrew Tridgell 2004
 
      ** NOTE! The following LGPL license applies to the replace
      ** library. This does NOT imply that all of Samba is released
      ** under the LGPL
-   
+
    This library is free software; you can redistribute it and/or
    modify it under the terms of the GNU Lesser General Public
    License as published by the Free Software Foundation; either
@@ -26,30 +27,27 @@
 
 */
 
-#ifdef HAVE_SYS_WAIT_H
-#include <sys/wait.h>
+#ifdef HAVE_GSSAPI
+
+#ifdef HAVE_GSSAPI_GSSAPI_EXT_H
+#include <gssapi/gssapi_ext.h>
+#elif HAVE_GSSAPI_GSSAPI_H
+#include <gssapi/gssapi.h>
+#elif HAVE_GSSAPI_GSSAPI_GENERIC_H
+#include <gssapi/gssapi_generic.h>
+#elif HAVE_GSSAPI_H
+#include <gssapi.h>
 #endif
 
-#include <signal.h>
-
-#ifndef SIGCLD
-#define SIGCLD SIGCHLD
+#if HAVE_GSSAPI_GSSAPI_KRB5_H
+#include <gssapi/gssapi_krb5.h>
 #endif
 
-#ifdef HAVE_SETJMP_H
-#include <setjmp.h>
+#if HAVE_GSSAPI_GSSAPI_SPNEGO_H
+#include <gssapi/gssapi_spnego.h>
+#elif HAVE_GSSAPI_SPNEGO_H
+#include <gssapi_spnego.h>
 #endif
 
-#ifdef HAVE_SYS_UCONTEXT_H
-#include <sys/ucontext.h>
 #endif
-
-#if !defined(HAVE_SIG_ATOMIC_T_TYPE)
-typedef int sig_atomic_t;
-#endif
-
-#if !defined(HAVE_WAITPID) && defined(HAVE_WAIT4)
-int rep_waitpid(pid_t pid,int *status,int options)
-#endif
-
 #endif

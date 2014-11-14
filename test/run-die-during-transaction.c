@@ -23,7 +23,6 @@ static int ftruncate_check(int fd, off_t length);
 #include <stdlib.h>
 #include <stdbool.h>
 #include <stdarg.h>
-#include <err.h>
 #include <setjmp.h>
 #include "external-agent.h"
 #include "logging.h"
@@ -165,12 +164,18 @@ reset:
 	key.dsize--;
 
 	ret = external_agent_operation(agent, OPEN, TEST_DBNAME);
-	if (ret != SUCCESS)
-		errx(1, "Agent failed to open: %s", agent_return_name(ret));
+	if (ret != SUCCESS) {
+		fprintf(stderr, "Agent failed to open: %s\n",
+			agent_return_name(ret));
+		exit(1);
+	}
 
 	ret = external_agent_operation(agent, FETCH, KEY_STRING);
-	if (ret != SUCCESS)
-		errx(1, "Agent failed find key: %s", agent_return_name(ret));
+	if (ret != SUCCESS) {
+		fprintf(stderr, "Agent failed find key: %s\n",
+			agent_return_name(ret));
+		exit(1);
+	}
 
 	in_transaction = true;
 	if (tdb_transaction_start(tdb) != 0)
@@ -216,8 +221,6 @@ int main(int argc, char *argv[])
 	unlock_callback = maybe_die;
 
 	agent = prepare_external_agent();
-	if (!agent)
-		err(1, "preparing agent");
 
 	for (i = 0; i < sizeof(ops)/sizeof(ops[0]); i++) {
 		diag("Testing %s after death", operation_name(ops[i]));

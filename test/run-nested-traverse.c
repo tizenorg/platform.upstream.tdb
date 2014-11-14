@@ -15,7 +15,6 @@
 #undef fcntl
 #include <stdlib.h>
 #include <stdbool.h>
-#include <err.h>
 #include "external-agent.h"
 #include "logging.h"
 
@@ -63,8 +62,6 @@ int main(int argc, char *argv[])
 
 	plan_tests(17);
 	agent = prepare_external_agent();
-	if (!agent)
-		err(1, "preparing agent");
 
 	tdb = tdb_open_ex("run-nested-traverse.tdb", 1024, TDB_CLEAR_IF_FIRST,
 			  O_CREAT|O_TRUNC|O_RDWR, 0600, &taplogctx, NULL);
