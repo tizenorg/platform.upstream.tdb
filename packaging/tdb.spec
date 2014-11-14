@@ -1,5 +1,5 @@
 Name:           tdb
-Version:        1.2.10
+Version:        1.2.12
 Release:        0
 Summary:        Samba Trivial Database
 License:        GPL-3.0+
