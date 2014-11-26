@@ -899,4 +899,14 @@ int usleep(useconds_t);
 void rep_setproctitle(const char *fmt, ...) PRINTF_ATTRIBUTE(1, 2);
 #endif
 
+bool nss_wrapper_enabled(void);
+bool nss_wrapper_hosts_enabled(void);
+bool socket_wrapper_enabled(void);
+bool uid_wrapper_enabled(void);
+
+/* Needed for Solaris atomic_add_XX functions. */
+#if defined(HAVE_SYS_ATOMIC_H)
+#include <sys/atomic.h>
+#endif
+
 #endif /* _LIBREPLACE_REPLACE_H */
