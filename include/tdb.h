@@ -30,6 +30,7 @@
 extern "C" {
 #endif
 
+#include <stdbool.h>
 #include <signal.h>
 
 /**
